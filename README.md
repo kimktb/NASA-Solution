@@ -1,4 +1,15 @@
 # NASA-Solution
+Solution Notes:
+Main Program - NASA Solution 
+FYI: Because of the great number of files for download, it takes nearly 5 minutes to run. 
+
+Unit Test - Test_NASA project
+
+The program creates the following folder structure: C:\Temp\DataFiles\Photos, Date file will be created C:\Temp\DataFiles\Dates.txt
+
+
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------
 Programming Exercise
 Use the NASA API described here to build a project that calls the Mars Rover Photos API with a given day as input, returning corresponding photo images as output. The application should download and store each image locally. The submission of the project should be via GitHub.
 
@@ -19,10 +30,3 @@ Bonus: unit tests, static analysis, performance tests, or any other things you f
 Double Bonus: have the application display the image in a web browser
 Triple Bonus: have the application run in a Docker container
 
-Solution Notes:
-Main Program - NASA Solution 
-FYI: Because of the great number of files for download, it takes nearly 5 minutes to run. 
-
-Unit Test - Test_NASA project
-
-The program creates the following folder structure: C:\Temp\DataFiles\Photos, Date file will be created C:\Temp\DataFiles\Dates.txt
