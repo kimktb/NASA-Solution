@@ -58,6 +58,10 @@ namespace NASA_Project.Services
                 using (WebClient wc = new WebClient())
                 {
                     wc.DownloadFileAsync(new Uri(remoteFileIncludingPath), localFileIncludingPath);
+                    
+                    // Wait for the current thread to complete, since the an async action will be on a new thread.
+                    // Without the next line, zero length files can be created
+                    while (wc.IsBusy) { }
                 }
             }
             catch (Exception ex)
@@ -124,7 +128,7 @@ namespace NASA_Project.Services
                 {
                     sw.WriteLine("02/27/17");
                     sw.WriteLine("June 2, 2018");
-                    sw.WriteLine("Jul-13-2016");                    
+                    sw.WriteLine("Jul-13-2016");
                     sw.WriteLine("April 31, 2018");
                 }
             }
