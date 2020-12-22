@@ -12,18 +12,24 @@ namespace NASA_Project.Services
     public class NASA_FileService : INASA_FileService
     {
         private static string _saveFilePathRoot = $"C:\\Temp\\DataFiles\\";
-        private static string _dateFileNameWithPath = $"{_saveFilePathRoot}DatesFile.txt";
+        private static string _dateFileNameWithPath = $"{_saveFilePathRoot}Dates.txt";
         private static string _saveFilePathPhotos = $"{_saveFilePathRoot}Photos\\";
         public void Dispose()
         {
             //throw new NotImplementedException();
         }
 
+        #region Constructor
         public NASA_FileService()
         {
 
         }
+        #endregion
 
+        /// <summary>
+        /// Read the file of dates - Dates.txt
+        /// </summary>
+        /// <returns></returns>
         public List<string> ReadDatesFile()
         {
             List<string> dateList = null;
@@ -39,6 +45,12 @@ namespace NASA_Project.Services
             return dateList;
         }
 
+        /// <summary>
+        /// Save the NASA photo
+        /// </summary>
+        /// <param name="remoteFileIncludingPath"></param>
+        /// <param name="localFileIncludingPath"></param>
+        /// <returns></returns>
         public async Task SaveNASAPhoto(string remoteFileIncludingPath, string localFileIncludingPath)
         {
             try
@@ -54,6 +66,9 @@ namespace NASA_Project.Services
             }
         }
 
+        /// <summary>
+        /// Create required folder structure
+        /// </summary>
         public void CreateRequiredFolders()
         {
             string path;
@@ -96,6 +111,9 @@ namespace NASA_Project.Services
             finally { }
         }
 
+        /// <summary>
+        /// Create the file of dates - Dates.txt
+        /// </summary>
         private void CreateDateFile()
         {
             string path = _dateFileNameWithPath;

@@ -19,19 +19,25 @@ namespace NASA_Project.Services
             //throw new NotImplementedException();
         }
 
+        #region Constructor
         public NASA_API_Service(string uri, string apiKey)
         {
             _uri    = uri;
             _apiKey = apiKey;
         }
+        #endregion
 
+        /// <summary>
+        /// Call Mars Rover Photos API Request for the specified date
+        /// </summary>
+        /// <param name="photoDate"></param>
+        /// <returns></returns>
         public async Task<HTTPResponseDetails> GetNASAPhotosAsync(string photoDate)
         {
             HTTPResponseDetails responseDetails = new HTTPResponseDetails();
             string response;
             Stream dataStream;
-            string method = "GET";
-            
+            string method = "GET";            
             string endpoint = $"{_uri}?earth_date={photoDate}&api_key={_apiKey}"; //?earth_date=2020-12-11&api_key=DEMO_KEY
 
             try
@@ -77,7 +83,7 @@ namespace NASA_Project.Services
             }
             catch (Exception ex)
             {
-                //log here
+                //Do some logging
             }
             return responseDetails;
         }

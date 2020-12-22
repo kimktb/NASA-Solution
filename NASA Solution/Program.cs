@@ -23,6 +23,10 @@ namespace NASA_Solution
         private static INASA_FileService _fileService;
         private static INASA_API_Service _apiService;
 
+        /// <summary>
+        /// This method drives the NASA file download process
+        /// </summary>
+        /// <param name="args"></param>
         public static void Main(string[] args)
         {
             //CreateWebHostBuilder(args).Build().Run();
@@ -30,6 +34,7 @@ namespace NASA_Solution
             _apiService = new NASA_API_Service(_uri, _apiKey);
             _fileService = new NASA_FileService();
 
+            // Down NASA photos
             using (NASA_Driver driver = new NASA_Driver(_dataFilePath, 
                 _apiService, _fileService))
             {
@@ -42,8 +47,6 @@ namespace NASA_Solution
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
-                .UseStartup<Startup>();
-
-        
+                .UseStartup<Startup>();        
     }
 }

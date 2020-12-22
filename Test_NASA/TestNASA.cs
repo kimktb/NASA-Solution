@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.IO;
 using NASA_Project.Interfaces;
 using NASA_Project;
+using Newtonsoft.Json;
 
 namespace Test_NASA
 {
@@ -42,12 +43,11 @@ namespace Test_NASA
             Assert.AreEqual(details.ResponseStatus, HttpStatusCode.OK);
         }
 
-        //ReadTextFile(string fileName)
         [TestMethod]
         public async Task Test_ReadDatesFile()
         {
             List<string> dates;
-            string fileNameWithPath = $"{_dataFilePath}DatesFile.txt"; // "DatesFileFolder\\DatesFile.txt";
+            string fileNameWithPath = $"{_dataFilePath}Dates.txt"; 
 
             using (NASA_FileService fs = new NASA_FileService())
             {
@@ -85,9 +85,19 @@ namespace Test_NASA
                 "02/27/17",
                 "June 2, 2018",
                 "Jul-13-2016",
-                "April 31, 2018",
+                "April 31, 2018", // This is an invalid date - Date does not exist
                 "December 1, 2018"
             };
+            // Expected dates in the format "yyyy-MM-dd" i.e. 2020 - 12 - 01
+            List<string> expectedDateList = new List<string>
+            {
+                "2017-02-27",
+                "2018-06-02",
+                "2016-07-13",
+                null, // This is an invalid date - Date does not exist
+                "2018-12-01"
+            };
+
             List<string> outputDateList = new List<string>();
 
             string outputDateString;
@@ -100,6 +110,8 @@ namespace Test_NASA
                     outputDateList.Add(outputDateString);
                 }
             }
+            Assert.AreEqual(JsonConvert.SerializeObject(expectedDateList),
+                JsonConvert.SerializeObject(outputDateList));
         }
 
         [TestMethod]
